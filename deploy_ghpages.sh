@@ -17,5 +17,5 @@
 	git config user.email "travis@seedstack.org"
 	git add .
 	git commit -m "Built for gh-pages of http://seedstack.github.io/jsdoc"
-	git push --force "https://${GITHUB_TOKEN}@github.com/seedstack/jsdoc" master:gh-pages
+	git push --force --quiet "https://${GITHUB_TOKEN}@github.com/seedstack/jsdoc" master:gh-pages > /dev/null 2>&1
 )
