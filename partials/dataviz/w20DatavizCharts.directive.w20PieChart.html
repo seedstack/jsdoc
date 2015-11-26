@@ -1,0 +1,163 @@
+<h1><code ng:non-bindable="">w20PieChart</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">w20DatavizCharts</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="w20datavizcharts-directive-page w20datavizcharts-directive-w20piechart-page"><p>The pie chart is used to represent proportion between series.</p>
+<h4 id="description_configuration">Configuration</h4>
+<pre><code> &quot;pie&quot;:{},
+</code></pre><h4 id="description_fragment-definition-sections">Fragment definition sections</h4>
+<p>This module has no fragment definition section.</p>
+<h4 id="description_data-format">Data format</h4>
+<p>Data fed to the pie chart should follow a default format. This format can be overridden by the use of personal function (See &quot;x&quot; and &quot;y&quot; properties below).</p>
+<p>Default data format exemple :</p>
+<pre><code> [
+  {
+     &quot;key&quot;: &quot;Series 1&quot;,
+     &quot;value&quot;: 10
+  },
+  {
+     &quot;key&quot;: &quot;Series 2&quot;,
+     &quot;value&quot;: 20
+  }
+ ]
+</code></pre><div class="alert alert-info">Note that the pie/donut chart has &quot;value&quot; by default instead of &quot;values&quot; as it can only represent one single value</div>
+
+<p>The <code>key</code> property defines the name of the series. The <code>value</code> defines the data of the series.</p>
+<h4 id="description_pie-chart-configuration">Pie chart configuration</h4>
+<p>The pie chart is configured by the configuration object passed to the directive declaration (see Directives).</p>
+<p> Exemple :</p>
+<pre><code>$scope.pieConfig = {
+  data:$scope.pieData,
+  showLabels:true,
+  pieLabelsOutside:true,
+  showValues:true,
+  tooltips:true,
+  labelType:&#39;percent&#39;,
+  showLegend:true
+}
+</code></pre><p>Available properties :</p>
+<table style="width: 100%; text-align: left;" class="table table-striped table-bordered table-condensed">
+   <thead>
+       <tr>
+           <th>Properties</th>
+           <th>Type</th>
+           <th>Description</th>
+       </tr>
+   </thead>
+   <tbody>
+       <tr>
+           <td>data</td>
+           <td>Numeric</td>
+           <td>Data to display using the pie chart (mandatory if you don&#39;t define the &quot;noData&quot; property.).</td>
+       </tr>
+       <tr>
+           <td>x</td>
+           <td>function</td>
+           <td>Providing a function to the x property allows configuration of the data on the &quot;X&quot; axis. Consider this example : say we want to customize the key value displayed on the &quot;X&quot; axis (X refer to the key and Y to the value) in comparison to the data provided to the &quot;data&quot; property.
+           We can achieve this by providing the following function to the x property :
+           <code>function(){
+                           return d.key+&quot; a custom string appended&quot;;
+                  };
+           </code>
+             where &quot;d.key&quot; is all the values of key in the array passed to property &quot;data&quot;.
+           </td>
+       </tr>
+       <tr>
+           <td>y</td>
+           <td>function</td>
+           <td>See &quot;x&quot; property above. Applied to the Y axis instead. (Exemple : double value :
+           <code>
+               function(){
+                      return d.value*2;
+                  }
+           </code>
+           </td>
+       </tr>
+       <tr>
+           <td>showLegend</td>
+           <td>Boolean</td>
+           <td>Display or hide legend.</td>
+       </tr>
+       <tr>
+           <td>tooltips</td>
+           <td>Boolean</td>
+           <td>Enable or disable tooltips when hovering the chart.</td>
+       </tr>
+         <tr>
+           <td>noData</td>
+           <td>String</td>
+           <td>Message to display when there is no data (default to &quot;No data available&quot;) </td>
+       </tr>
+         <tr>
+           <td>color</td>
+           <td>Array</td>
+           <td> Color of series in the corresponding order. Can be hexadecimal, named  or RGB. Ex.  <code>[&#39;#4D9FF2&#39;, &#39;yellow&#39;, &#39;rgb(151,109,165)&#39;]</code>. Note that you can also
+           specify the value of the color in the &quot;data&quot; array by providing a &quot;color&quot; attribute to each object. </td>
+       </tr>
+          <tr>
+           <td> tooltipContent</td>
+           <td>function</td>
+           <td>Customize tooltip content. Ex. <code> function(key, x, y, e, graph) { return &#39;&amp;lth1&amp;gt Tooltip Title &amp;lt/h1&amp;gt &amp;ltp&amp;gt&#39;+ y +&#39;&amp;lt/p&amp;gt&#39;;} </code>
+           where key, x and y are the name and value of the series at the tooltip point, e an event and graph the chart object.</td>
+       </tr>
+        <tr>
+           <td>transitionDuration</td>
+           <td>integer</td>
+           <td>Duration of transition effect (Default to 500).</td>
+       </tr>
+        <tr>
+           <td>showLabels</td>
+           <td>Boolean</td>
+           <td>Show or hide labels.</td>
+       </tr>
+       <tr>
+           <td>labelType</td>
+           <td>String</td>
+           <td>What the label would display : &#39;key&#39;, &#39;value&#39; or &#39;percent&#39;.</td>
+       </tr>
+       <tr>
+           <td>pieLabelsOutside</td>
+           <td>Boolean</td>
+           <td>Should the label be inside or outside the chart.</td>
+       </tr>
+        <tr>
+           <td>valueFormat</td>
+           <td>function</td>
+           <td>Custom formating of values. For instance one can print values in <code>.2f</code> decimal
+           by passing <code>d3.format(&#39;,.2f&#39;)</code> to this property. See <a href="https://github.com/mbostock/d3/wiki/Formatting" target="_blank">d3.js documentation</a>
+           for a list of format value.</td>
+       </tr>
+        <tr>
+           <td>donut</td>
+           <td>Boolean</td>
+           <td>Display the chart as a donut</td>
+       </tr>
+          <tr>
+           <td>donutLabelsOutside</td>
+           <td>Boolean</td>
+           <td>Should the label be inside or outside the chart</td>
+       </tr>
+            </tr>
+          <tr>
+           <td>donutRatio</td>
+           <td>Numeric</td>
+           <td>Ratio between the hole and edge of donut (Default 0.5)</td>
+       </tr>
+   </tbody>
+</table>
+
+
+<p>The w20PieChart directive allows you to declare the chart on your html markup and specify the configuration object to be used in your controller.</p>
+<div class="alert alert-info"> You must indicate a unique id for the chart </div>
+
+<pre><code>&lt;div id=&quot;pie&quot; data-w20-pie-chart=&quot;pieConfig&quot;&gt;
+</code></pre><p></div></p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY w20-pie-chart&gt;
+   ...
+&lt;/ANY&gt;</pre>
+</div>
+</div>
